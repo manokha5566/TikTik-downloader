@@ -45,3 +45,10 @@ app.get('/api/download', async (req, res) => {
 app.listen(PORT, () => {
     console.log(`🚀 Tiktik Server running at http://localhost:${PORT}`);
 });
+ {
+    "version": 2,
+    "rewrites": [
+      { "source": "/api/(.*)", "destination": "/api/download" },
+      { "source": "/(.*)", "destination": "/public/index.html" }
+    ]
+  }
