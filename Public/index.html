@@ -1,0 +1,129 @@
+ <!DOCTYPE html>
+  <html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Tiktik - Premium TikTok Downloader</title>
+      <script src="https://cdn.tailwindcss.com"></script>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+      <style>
+          @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap');
+          body { font-family: 'Inter', sans-serif; background-color: #0f172a; }
+          .glass { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255,
+  255, 0.1); }
+          .gradient-text { background: linear-gradient(to right, #ff0050, #00f2ea); -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; }
+          .loader { border-top-color: #ff0050; animation: spinner 1.5s linear infinite; }
+          @keyframes spinner { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+      </style>
+  </head>
+  <body class="text-white min-h-screen flex flex-col">
+      <nav class="p-6 flex justify-between items-center max-w-6xl mx-auto w-full">
+          <div class="text-3xl font-extrabold tracking-tighter flex items-center gap-2">
+              <span class="bg-gradient-to-br from-pink-500 to-cyan-400 p-2 rounded-lg text-white"><i class="fa-brands
+  fa-tiktok"></i></span>
+              <span class="gradient-text">Tiktik</span>
+          </div>
+          <div class="hidden md:flex gap-8 text-sm font-medium text-gray-400">
+              <a href="#" class="hover:text-white transition">Home</a>
+              <a href="#features" class="hover:text-white transition">Features</a>
+              <a href="#" class="hover:text-white transition">API</a>
+              <a href="#" class="hover:text-white transition">Terms</a>
+          </div>
+      </nav>
+      <main class="flex-grow flex flex-col items-center justify-center px-4 py-12 text-center">
+          <h1 class="text-5xl md:text-7xl font-extrabold mb-6 leading-tight">
+              Download <span class="gradient-text">TikTok</span> <br>Without Watermark
+          </h1>
+          <p class="text-gray-400 text-lg md:text-xl mb-10 max-w-2xl">
+              The fastest, most premium way to save your favorite TikTok videos in HD quality. Just paste the link and
+  get your video in seconds.
+          </p>
+          <div class="w-full max-w-3xl glass p-2 rounded-2xl flex flex-col md:flex-row gap-2 shadow-2xl">
+              <input type="text" id="videoUrl" placeholder="Paste TikTok link here..." class="flex-grow bg-transparent
+  p-4 outline-none text-lg placeholder-gray-500" />
+              <button onclick="downloadVideo()" id="btnText" class="bg-gradient-to-r from-pink-600 to-cyan-600 px-8 py-4
+  rounded-xl font-bold text-lg hover:scale-105 transition-transform active:scale-95 flex items-center justify-center
+  gap-2">
+                  <span>Download</span>
+                  <i class="fa-solid fa-arrow-down"></i>
+              </button>
+          </div>
+          <div id="loading" class="hidden mt-8 flex flex-col items-center">
+              <div class="loader ease-linear rounded-full border-4 border-t-4 border-gray-700 h-12 w-12 mb-4"></div>
+              <p class="text-gray-400">Fetching your video, please wait...</p>
+          </div>
+          <div id="result" class="hidden mt-12 w-full max-w-md glass p-6 rounded-3xl text-left animate-fade-in">
+              <img id="videoCover" src="" alt="Cover" class="w-full h-48 object-cover rounded-2xl mb-4 shadow-lg">
+              <h3 id="videoTitle" class="text-xl font-bold mb-6 truncate">Video Title</h3>
+              <div class="flex flex-col gap-3">
+                  <a id="downloadNoWm" href="" target="_blank" class="w-full bg-white text-black py-3 rounded-xl
+  font-bold text-center hover:bg-gray-200 transition flex items-center justify-center gap-2">
+                      <i class="fa-solid fa-circle-check text-green-600"></i> Download No Watermark
+                  </a>
+                  <a id="downloadWm" href="" target="_blank" class="w-full bg-gray-800 text-white py-3 rounded-xl
+  font-bold text-center hover:bg-gray-700 transition flex items-center justify-center gap-2">
+                      <i class="fa-solid fa-video"></i> Download With Watermark
+                  </a>
+                  <a id="downloadMusic" href="" target="_blank" class="w-full bg-gray-800 text-white py-3 rounded-xl
+  font-bold text-center hover:bg-gray-700 transition flex items-center justify-center gap-2">
+                      <i class="fa-solid fa-music"></i> Download MP3 Audio
+                  </a>
+              </div>
+          </div>
+      </main>
+      <section id="features" class="max-w-6xl mx-auto w-full py-20 px-6 grid md:grid-cols-3 gap-8">
+          <div class="glass p-8 rounded-3xl text-center">
+              <div class="text-pink-500 text-4xl mb-4"><i class="fa-solid fa-bolt"></i></div>
+              <h4 class="text-xl font-bold mb-2">Ultra Fast</h4>
+              <p class="text-gray-400">Get your videos instantly with our high-speed premium servers.</p>
+          </div>
+          <div class="glass p-8 rounded-3xl text-center">
+              <div class="text-cyan-400 text-4xl mb-4"><i class="fa-solid fa-shield-halved"></i></div>
+              <h4 class="text-xl font-bold mb-2">Safe & Secure</h4>
+              <p class="text-gray-400">Your privacy matters. We don't store any of your personal data.</p>
+          </div>
+          <div class="glass p-8 rounded-3xl text-center">
+              <div class="text-purple-500 text-4xl mb-4"><i class="fa-solid fa-infinity"></i></div>
+              <h4 class="text-xl font-bold mb-2">Unlimited</h4>
+              <p class="text-gray-400">Download as many videos as you want. No limits, no registration.</p>
+          </div>
+      </section>
+      <footer class="p-10 text-center text-gray-500 text-sm border-t border-gray-800 mt-20">
+          <p>&copy; 2026 <span class="gradient-text font-bold">Tiktik</span>. All rights reserved.</p>
+          <p class="mt-2">Not affiliated with TikTok Inc.</p>
+      </footer>
+      <script>
+          async function downloadVideo() {
+              const urlInput = document.getElementById('videoUrl');
+              const url = urlInput.value.trim();
+              const btn = document.getElementById('btnText');
+              const loading = document.getElementById('loading');
+              const result = document.getElementById('result');
+              if (!url) { alert('Please paste a TikTok link!'); return; }
+              btn.disabled = true;
+              loading.classList.remove('hidden');
+              result.classList.add('hidden');
+              try {
+                  const response = await fetch(`/api/download?url=${encodeURIComponent(url)}`);
+                  const data = await response.json();
+                  if (data.success) {
+                      document.getElementById('videoCover').src = data.cover;
+                      document.getElementById('videoTitle').innerText = data.title;
+                      document.getElementById('downloadNoWm').href = data.video_no_watermark;
+                      document.getElementById('downloadWm').href = data.video_watermark;
+                      document.getElementById('downloadMusic').href = data.music;
+                      result.classList.remove('hidden');
+                  } else {
+                      alert(data.error || 'Something went wrong!');
+                  }
+              } catch (err) {
+                  alert('Server error. Please try again later.');
+              } finally {
+                  btn.disabled = false;
+                  loading.classList.add('hidden');
+              }
+          }
+      </script>
+  </body>
+  </html>
